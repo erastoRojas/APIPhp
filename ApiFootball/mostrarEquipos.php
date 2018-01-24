@@ -7,7 +7,7 @@
     $uri = 'http://api.football-data.org/v1/competitions/455/teams';
     $header = array('headers' => array('X-Auth-Token' => '25aa2d129754447984d433d72ab59d94'));
     $response = $client->get($uri, $header);          
-    $json = json_decode($response->getBody());/*var_dump($json->teams[0]->_links); */
+    $json = json_decode($response->getBody());
 ?>
     <!DOCTYPE html>
     <html>

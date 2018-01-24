@@ -7,7 +7,7 @@
     $uri = 'http://api.football-data.org/v1/competitions/?season=2015';
     $header = array('headers' => array('X-Auth-Token' => '25aa2d129754447984d433d72ab59d94'));
     $response = $client->get($uri, $header);          
-    $json = json_decode($response->getBody());/*var_dump($json->teams[0]->_links); */
+    $json = json_decode($response->getBody());
     var_dump($json);
 ?>
 
@@ -32,7 +32,6 @@
         <table class="table table-hover">
             <tr>
             <th>Nombre</th>
-            <th>Escudo</th>
             </tr>
             <?php
                 foreach ( $json as $team)
@@ -40,7 +39,6 @@
             ?>
             <tr onclick="location='http://localhost:8000/mostrarJugadores.php?code=<?php echo $team->_links->players->href ?>'">
                 <td><?php echo $team->caption ?></td>
-                <td><img src="<?php echo $team->crestUrl ?>"</td>
             </tr>
             <?php } ?>
         </table>
