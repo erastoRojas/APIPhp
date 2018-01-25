@@ -4,7 +4,7 @@
     use GuzzleHttp\Client;  
     $client = new Client();
 
-    $uri = 'http://api.football-data.org/v1/competitions/455/teams';
+    $uri = $_REQUEST["code"];
     $header = array('headers' => array('X-Auth-Token' => '25aa2d129754447984d433d72ab59d94'));
     $response = $client->get($uri, $header);          
     $json = json_decode($response->getBody());
@@ -26,7 +26,7 @@
         </style>
     </head>
     <body>
-        <h1>Primera División de Futbol Española</h1>
+        <h1><?php echo $_REQUEST["caption"]; ?></h1>
         <table class="table table-hover">
             <tr>
             <th>Equipo</th>
@@ -36,7 +36,7 @@
                 foreach ( $json->teams as $team)
                 {
             ?>
-            <tr onclick="location='http://localhost:8000/mostrarJugadores.php?code=<?php echo $team->_links->players->href ?>'">
+            <tr onclick="location='http://localhost:8000/mostrarJugadores.php?code=<?php echo $team->_links->players->href ?>&name=<?php echo $team->name ?>'">
                 <td><?php echo $team->name ?></td>
                 <td><img src="<?php echo $team->crestUrl ?>"</td>
             </tr>

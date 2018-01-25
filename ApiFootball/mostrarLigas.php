@@ -4,11 +4,11 @@
     use GuzzleHttp\Client;  
     $client = new Client();
 
-    $uri = 'http://api.football-data.org/v1/competitions/?season=2015';
+    $uri = 'http://api.football-data.org/v1/competitions/?season=2017';
     $header = array('headers' => array('X-Auth-Token' => '25aa2d129754447984d433d72ab59d94'));
     $response = $client->get($uri, $header);          
     $json = json_decode($response->getBody());
-    var_dump($json);
+    
 ?>
 
  <!DOCTYPE html>
@@ -37,7 +37,7 @@
                 foreach ( $json as $team)
                 {
             ?>
-            <tr onclick="location='http://localhost:8000/mostrarJugadores.php?code=<?php echo $team->_links->players->href ?>'">
+            <tr onclick="location='http://localhost:8000/mostrarEquipos.php?code=<?php echo $team->_links->teams->href ?>&caption=<?php echo $team->caption ?>'">
                 <td><?php echo $team->caption ?></td>
             </tr>
             <?php } ?>
